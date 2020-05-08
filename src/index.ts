@@ -3,10 +3,12 @@ import * as bodyParser from "body-parser"
 import { Server } from "@overnightjs/core"
 import { createConnection, Connection } from "typeorm"
 import OperationsController from "./routes/operations"
+import cors from "cors"
 
 export class AirspaceServer extends Server {
   constructor() {
     super(process.env.NODE_ENV === "development") // setting showLogs to true
+    this.app.use(cors()) // FIXME: specify
     this.app.use(bodyParser.json())
     this.app.use(bodyParser.urlencoded({ extended: true }))
     this.setupControllers()

@@ -14,7 +14,7 @@ export default class Operations extends BaseEntity {
   @Column("text")
   title: string
 
-  @Column("json")
+  @Column("json", { nullable: true })
   feature_collection: any
 
   @Column("timestamptz", {
