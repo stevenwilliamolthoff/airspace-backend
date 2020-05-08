@@ -1,5 +1,5 @@
 import { OK, BAD_REQUEST } from "http-status-codes"
-import { Controller, Get, Middleware, Put } from "@overnightjs/core"
+import { Controller, Get, Middleware, Put, Post } from "@overnightjs/core"
 import { Request, Response } from "express"
 import Operations from "../entities/Operations"
 
@@ -20,6 +20,19 @@ export default class OperationsController {
     try {
       const operation = new Operations(request.body)
       await operation.save()
+      return response.json({ operation })
+    } catch (error) {
+      console.error(error)
+      return response.status(BAD_REQUEST).json({ message: "error" })
+    }
+  }
+  @Post(":id")
+  private async udpateOperation(request: Request, response: Response) {
+    try {
+      let operation: Operations = await Operations.findOne(request.params.id)
+      if (operation) {
+        operation = await operation.update(request.body)
+      }
       return response.json({ operation })
     } catch (error) {
       console.error(error)

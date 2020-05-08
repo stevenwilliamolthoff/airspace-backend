@@ -36,4 +36,10 @@ export default class Operations extends BaseEntity {
     super()
     Object.assign(this, operation)
   }
+
+  update(operation: Partial<Operations>) {
+    this.title = operation.title
+    this.feature_collection = operation.feature_collection
+    return this.save()
+  }
 }
