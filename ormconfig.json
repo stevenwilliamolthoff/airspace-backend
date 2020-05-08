@@ -1,0 +1,14 @@
+{
+  "type": "postgres",
+  "host": "database",
+  "port": 5432,
+  "username": "steven",
+  "password": "gabagool",
+  "database": "airspace",
+  "entities": ["src/entities/**/*.ts"],
+  "migrations": ["src/migrations/**/*.ts"],
+  "cli": {
+    "migrationsDir": "src/migrations"
+  },
+  "synchronize": true
+}
