@@ -2,13 +2,15 @@ import { OK, BAD_REQUEST } from "http-status-codes"
 import { Controller, Get, Middleware, Put, Post } from "@overnightjs/core"
 import { Request, Response } from "express"
 import Operations from "../entities/Operations"
+import moment from "moment"
 
 @Controller("operations")
 export default class OperationsController {
   @Get("/")
   private async getOperations(request: Request, response: Response) {
     try {
-      const operations: Operations[] = await Operations.find()
+      let operations: Operations[] = await Operations.find()
+      operations = Operations.getSorted(operations)
       return response.json({ operations })
     } catch (error) {
       console.error(error)

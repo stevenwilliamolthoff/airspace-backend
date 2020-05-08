@@ -23,6 +23,7 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "http-status-codes": "^1.4.0",
+    "moment": "^2.25.3",
     "nodemon": "^2.0.2",
     "prettier": "2.0.4",
     "ts-express-decorators": "^5.44.17",

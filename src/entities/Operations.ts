@@ -5,6 +5,7 @@ import {
   Column,
   BeforeUpdate,
 } from "typeorm"
+import moment from "moment"
 
 @Entity({ name: "operations" })
 export default class Operations extends BaseEntity {
@@ -41,5 +42,19 @@ export default class Operations extends BaseEntity {
     this.title = operation.title
     this.feature_collection = operation.feature_collection
     return this.save()
+  }
+
+  static getSorted(operations: Operations[]) {
+    return operations.sort((operationA, operationB) => {
+      const momentA = moment(operationA.updated_at)
+      const momentB = moment(operationB.updated_at)
+      if (momentA.isAfter(momentB)) {
+        return -1
+      } else if (momentA.isBefore(momentB)) {
+        return 1
+      } else {
+        return 0
+      }
+    })
   }
 }
