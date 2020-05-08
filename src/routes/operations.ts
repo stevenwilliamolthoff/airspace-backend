@@ -8,7 +8,8 @@ export default class OperationsController {
   @Get("/")
   private async getOperations(request: Request, response: Response) {
     try {
-      return response.json({ message: "ok" })
+      const operations: Operations[] = await Operations.find()
+      return response.json({ operations })
     } catch (error) {
       console.error(error)
       return response.status(BAD_REQUEST).json({ message: "error" })
