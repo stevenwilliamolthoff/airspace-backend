@@ -17,6 +17,16 @@ export default class OperationsController {
       return response.status(BAD_REQUEST).json({ message: "error" })
     }
   }
+  @Get(":id")
+  private async getOperation(request: Request, response: Response) {
+    try {
+      let operation: Operations = await Operations.findOne(request.params.id)
+      return response.json({ operation })
+    } catch (error) {
+      console.error(error)
+      return response.status(BAD_REQUEST).json({ message: "error" })
+    }
+  }
   @Put("/")
   private async putOperation(request: Request, response: Response) {
     try {
