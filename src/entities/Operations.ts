@@ -16,7 +16,7 @@ export default class Operations extends BaseEntity {
   title: string
 
   @Column("json", { nullable: true })
-  feature_collection: any
+  geo_json: any
 
   @Column("timestamptz", {
     default: "now",
@@ -40,7 +40,7 @@ export default class Operations extends BaseEntity {
 
   update(operation: Partial<Operations>) {
     this.title = operation.title
-    this.feature_collection = operation.feature_collection
+    this.geo_json = operation.geo_json
     return this.save()
   }
 
