@@ -7,8 +7,8 @@ import cors from "cors"
 
 export class AirspaceServer extends Server {
   constructor() {
-    super(process.env.NODE_ENV === "development") // setting showLogs to true
-    this.app.use(cors()) // FIXME: specify
+    super(process.env.NODE_ENV === "development")
+    this.app.use(cors())
     this.app.use(bodyParser.json())
     this.app.use(bodyParser.urlencoded({ extended: true }))
     this.setupControllers()

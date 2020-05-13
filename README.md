@@ -1,3 +1,7 @@
-# Airspace Link Backend
+# Backend for Airspace Link
 
-### npm run start:dev
+### Start backend
+
+```
+docker-compose up;
+```
