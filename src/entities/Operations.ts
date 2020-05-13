@@ -7,6 +7,8 @@ import {
 } from "typeorm"
 import moment from "moment"
 
+type OperationColumns = keyof Operations
+
 @Entity({ name: "operations" })
 export default class Operations extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -17,6 +19,16 @@ export default class Operations extends BaseEntity {
 
   @Column("json", { nullable: true })
   geo_json: any
+
+  @Column("timestamptz", {
+    default: "now",
+  })
+  start_at: string
+
+  @Column("timestamptz", {
+    default: () => "NOW() + interval '1 hour'",
+  })
+  end_at: string
 
   @Column("timestamptz", {
     default: "now",
@@ -41,6 +53,8 @@ export default class Operations extends BaseEntity {
   update(operation: Partial<Operations>) {
     this.title = operation.title
     this.geo_json = operation.geo_json
+    this.start_at = operation.start_at
+    this.end_at = operation.end_at
     return this.save()
   }
 
