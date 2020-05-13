@@ -1,7 +1,7 @@
 # Backend for Airspace Link
 
-### Start backend
+## Start the Service
 
 ```
-docker-compose up;
+docker-compose up
 ```
